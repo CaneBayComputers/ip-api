@@ -64,9 +64,7 @@ class IpApi
     {
         $query = $this->prepareQuery();
 
-        $response = Http::retry($this->retry['times'], $this->retry['sleep'],
-            fn(Exception $e) => $e instanceof ConnectionException
-        )->get(config('ip-api.url').$query)->throw();
+        $response = Http::get(config('ip-api.url') . $query);
 
         if ( ! $this->withHeaders) {
             return $response->json();
