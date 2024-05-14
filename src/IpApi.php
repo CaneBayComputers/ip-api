@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Http;
 class IpApi
 {
 
-    private string $key;
+    private $key;
 
     private bool $withHeaders = false;
 
-    private string $lang;
+    private $lang;
 
     private array $retry = [
         'times' => 1,
