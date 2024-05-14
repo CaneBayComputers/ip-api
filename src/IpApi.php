@@ -17,6 +17,8 @@ class IpApi
 
     private $lang;
 
+    private $ip;
+
     private array $retry = [
         'times' => 1,
         'sleep' => 0,
@@ -35,7 +37,9 @@ class IpApi
      */
     protected function __construct(string $ip)
     {
-        $this->validateIp($ip);
+        $this->ip = $ip;
+        
+        $this->validateIp();
 
         $this->key = config('ip-api.key');
         $this->lang = config('ip-api.lang');
@@ -143,9 +147,9 @@ class IpApi
      *
      * @throws Exception If the IP address is invalid or reserved.
      */
-    private function validateIp(string $ip): void
+    private function validateIp(): void
     {
-        if ( ! filter_var($ip, FILTER_VALIDATE_IP)) {
+        if ( ! filter_var($this->ip, FILTER_VALIDATE_IP)) {
             throw new Exception('Invalid IP address');
         }
     }
