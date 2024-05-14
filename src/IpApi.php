@@ -33,7 +33,7 @@ class IpApi
      *
      * @throws Exception If the given IP address is invalid or reserved.
      */
-    protected function __construct(protected string $ip)
+    protected function __construct(string $ip)
     {
         $this->validateIp();
 
