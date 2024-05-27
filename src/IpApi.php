@@ -64,7 +64,7 @@ class IpApi
     {
         $query = $this->prepareQuery();
 
-        $response = Http::get(config('ip-api.url') . $query);
+        $response = Http::timeout(config('ip-api.timeout'))->get(config('ip-api.url') . $query);
 
         if ( ! $this->withHeaders) {
             return $response->json();
